@@ -162,8 +162,10 @@ public class FormatTextPPT {
 	public void exportNewFiles(XMLSlideShow ppt) throws IOException {
 		
 		// create two new files in the original file's path
-		File pptWithAnswers = new File(originalFile.getParent() + "/NEW With Answers.pptx");
-		File pptWithoutAnswers = new File(originalFile.getParent() + "/NEW Without Answers.pptx");
+		int indexOfDot = originalFile.getPath().indexOf('.');
+		String newPath = originalFile.getPath().substring(0,indexOfDot);
+		File pptWithAnswers = new File(newPath + " With Answers.pptx");
+		File pptWithoutAnswers = new File(newPath + " Without Answers.pptx");
 		FileOutputStream outWithAnswers = new FileOutputStream(pptWithAnswers);
 		FileOutputStream outWithoutAnswers = new FileOutputStream(pptWithoutAnswers);
 		
