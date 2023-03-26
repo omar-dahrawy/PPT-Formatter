@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 // importing Apache POI environment packages
 import org.apache.poi.xslf.usermodel.*;
+import org.apache.poi.sl.usermodel.AutoNumberingScheme;
 import org.apache.poi.sl.usermodel.VerticalAlignment;
 
 public class FormatTextPPT {
@@ -105,11 +106,11 @@ public class FormatTextPPT {
 		}
 		
 		// place each new duplicate after its original slide
-		int j = 0;
+		int newSlideOrder = 0;
 		for(int i=slides.size()/2 ; i<slides.size() ; i++) {
-			XSLFSlide slide = slides.get(i);
-			ppt.setSlideOrder(slide, j);
-			j+=2;
+			XSLFSlide newSlide = slides.get(i);
+			ppt.setSlideOrder(newSlide, newSlideOrder);
+			newSlideOrder+=2;
 		}
 		System.out.println("Duplicated slides");
 	}
@@ -119,9 +120,9 @@ public class FormatTextPPT {
 		// modify the text formatting for each duplicate slide (in this case, remove underline and set font color to black)
 		for (int i=0 ; i<slides.size() ; i+=2) {
 			XSLFSlide slide = slides.get(i);
-			XSLFTextShape title = slide.getPlaceholder(1);
+			XSLFTextShape textPlaceholder = slide.getPlaceholder(1);
 
-			List<XSLFTextParagraph> paragraphs = title.getTextParagraphs();
+			List<XSLFTextParagraph> paragraphs = textPlaceholder.getTextParagraphs();
 
 			for (XSLFTextParagraph paragraph : paragraphs) {
 				for (XSLFTextRun textRun : paragraph.getTextRuns()) {
@@ -144,12 +145,15 @@ public class FormatTextPPT {
 	
 	public void fixBullets(XMLSlideShow ppt ,List<XSLFSlide> slides) {
 		
-		// for each duplicate slide, set bullet autonumbering to match that of the original slide
+		// for each duplicate slide, set bullet autoNumbering to match that of the original slide
 		for (int i=0 ; i<slides.size() ; i+=2) {
-			List<XSLFTextParagraph> paragraphs = slides.get(i).getPlaceholder(1).getTextParagraphs();
-			for (int j=0 ; j<paragraphs.size() ; j++) {
-				XSLFTextParagraph paragraph = paragraphs.get(j);
-				paragraph.setBulletAutoNumber(slides.get(i+1).getPlaceholder(1).getTextParagraphs().get(j).getAutoNumberingScheme(), j+1);
+			XSLFSlide originalSlide = slides.get(i+1);
+			XSLFSlide duplicateSlide = slides.get(i);
+			List<XSLFTextParagraph> duplicateParagraphs = duplicateSlide.getPlaceholder(1).getTextParagraphs();
+			for (int j=0 ; j<duplicateParagraphs.size() ; j++) {
+				XSLFTextParagraph newParagraph = duplicateParagraphs.get(j);
+				AutoNumberingScheme originalScheme = originalSlide.getPlaceholder(1).getTextParagraphs().get(j).getAutoNumberingScheme();
+				newParagraph.setBulletAutoNumber(originalScheme, j+1);
 			}
 		}
 		System.out.println("Fixed bullets numbering");
