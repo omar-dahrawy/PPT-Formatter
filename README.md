@@ -1,2 +1,2 @@
 # PPT-Formatter
-Java program to automate formatting of PPT files.
+Java program to automate formatting of PowerPoint files.
