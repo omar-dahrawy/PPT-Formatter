@@ -14,7 +14,7 @@ Once done, simply run the program and select the [sample PowerPoint file] using 
 
 The [sample file]() contains 20 slides and each slide contains two text placeholders, with some slides containing some images. The first placeholder contains the question text, and all questions are numbered using the numbering format `1- ...`. The second placeholder contains the multiple choices, also numbered using the numbering format `a), b), c) ...`. In each slide, the correct answer is underlined and formatted with blue font color.
 
-The goal of the task is to <sup>(this is also the order in which the steps are executed in the code)</sup>:
+The goal of the task is to <sub>(this is also the order in which the steps are executed in the code)</sub>:
 1. Shuffle the order of the slides
 2. Renumber the questions starting from 1 ascending
 3. Duplicate each slide, placing the duplicate slide right after the original
