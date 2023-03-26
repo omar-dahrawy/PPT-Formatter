@@ -12,7 +12,7 @@ Once done, simply run the program and select the [sample PowerPoint file] using 
 ### File modification steps
 ***This project was created for a very specific use case and it's highly unlikely that someone else will need to use it in its current implementation. However, understanding the steps executed will help you modify the program to match your needs.***
 
-The [sample file]() contains 20 slides and each slide contains two text placeholders, with some slides containing some images. The first placeholder contains the question text, and all questions are numbered using the numbering format ´1- ...´. The second placeholder contains the multiple choices, also numbered using the numbering format ´a), b), c) ...´. In each slide, the correct answer is underlined and formatted with blue font color.
+The [sample file]() contains 20 slides and each slide contains two text placeholders, with some slides containing some images. The first placeholder contains the question text, and all questions are numbered using the numbering format `1- ...`. The second placeholder contains the multiple choices, also numbered using the numbering format `a), b), c) ...`. In each slide, the correct answer is underlined and formatted with blue font color.
 
 The goal of the task is to <sup>(this is also the order in which the steps are executed in the code)</sup>:
 1. Shuffle the order of the slides
