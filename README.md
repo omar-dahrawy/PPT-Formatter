@@ -14,10 +14,16 @@ Once done, simply run the program and select the [sample PowerPoint file] using 
 
 The [sample file]() contains 20 slides and each slide contains two text placeholders, with some slides containing some images. The first placeholder contains the question text, and all questions are numbered using the numbering format `1- ...`. The second placeholder contains the multiple choices, also numbered using the numbering format `a), b), c) ...`. In each slide, the correct answer is underlined and formatted with blue font color.
 
-The goal of the task is to <sub>(this is also the order in which the steps are executed in the code)</sub>:
+The goal of the task is to:
 1. Shuffle the order of the slides
 2. Renumber the questions starting from 1 ascending
 3. Duplicate each slide, placing the duplicate slide right after the original
 4. For each pair of slides, remove the text formatting for the correct answer from the first slide. This way, one slide has the question and the answers and the next slide also has the question and the answers - but with the correct answer underlined and colored.
 
-At this point, the main steps of the task are completed. But due to the 
+At this point, the main steps of the task are completed. But due to how the Apache POI API works, the text alignment and the bullet style of the duplicated slides need fixing. Due to this, two more steps are needed:
+5. Fix the vertical text alignment of the question text in each duplicate slide
+6. Fix the bullet style of the answer choices text in each duplicate slide
+
+These steps are executed in the same order by the program. After that, the program exports two new PowerPoint files. One file contains the final result of the above mentioned steps (one slide containing the question and the choice answers, and another duplicate slide with the correct answer underlined and colored). The other file contains only the slides with the question and choice answers.
+
+With the above mentioned steps and the comments provided in the code, the program can be modified to format any PowerPoint files according to different use cases.
