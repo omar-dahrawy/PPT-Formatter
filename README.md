@@ -21,6 +21,7 @@ The goal of the task is to:
 4. For each pair of slides, remove the text formatting for the correct answer from the first slide. This way, one slide has the question and the answers and the next slide also has the question and the answers - but with the correct answer underlined and colored.
 
 At this point, the main steps of the task are completed. But due to how the Apache POI API works, the text alignment and the bullet style of the duplicated slides need fixing. Due to this, two more steps are needed:
+
 5. Fix the vertical text alignment of the question text in each duplicate slide
 6. Fix the bullet style of the answer choices text in each duplicate slide
 
